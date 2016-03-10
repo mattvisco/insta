@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div id="slideshow-holder">
+        {% for image in images %}
+            <img class="slideshow-image" src="{{ url_for('static', filename=[image.img_type, image.filename ]|join('/')) }}"/>
+        {% endfor %}
+    </div>
+    <script type=text/javascript src="{{ config.JUGGERNAUT_DRIVER }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/vendor/jquery-1.12.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/slideshow.js') }}"></script>
+{% endblock %}
