@@ -13,7 +13,9 @@ import re
 import StringIO
 import string
 
-# Login and Crawling for #bestview(->to be changed for #emojimilan in final)  
+# Login and crawling for #bestview(->to be changed for #emojimilan in final)  
+
+# request instagram login
 b = StringIO.StringIO()
 c = pycurl.Curl()
 c.setopt(pycurl.URL, 'https://instagram.com/accounts/login/?force_classic_login')
@@ -26,8 +28,11 @@ c.setopt(pycurl.COOKIEJAR, 'cookiess.txt')
 page = c.perform()
 c.close()
 
-links = re.findall('<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"/>', str(page))
+# preg_match that doesn't really work
+links = re.findall('<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"/>', b.getvalue())
 
+# Log into instagram using username+password(-> need to get one from students or whoever) and token retrieved in Links 
+# (I actually hard coded the token, since my re.findall didn't work)
 c = pycurl.Curl()
 c.setopt(pycurl.URL, 'https://instagram.com/accounts/login/?force_classic_login')
 c.setopt(pycurl.REFERER, 'https://instagram.com/accounts/login/?force_classic_login')
@@ -41,6 +46,7 @@ c.setopt(pycurl.COOKIEJAR, 'cookiess.txt')
 page = c.perform()
 c.close()
 
+# retrieve 'search for #bestview tag' page and store images data in b object
 c = pycurl.Curl()
 c.setopt(pycurl.URL, 'https://www.instagram.com/explore/tags/bestview/')
 c.setopt(pycurl.REFERER, 'https://instagram.com/')
@@ -59,7 +65,7 @@ c.setopt(pycurl.COOKIEJAR, 'cookiess.txt')
 page = c.perform()
 c.close()
 
-# retrieve the values printed by b
+# print the values from b into string variables and parse them
 rawpage = b.getvalue()
 firstsplit = rawpage.split('window._sharedData')
 displaysrc = firstsplit[3].split('"display_src":"')
@@ -67,8 +73,10 @@ displayID = firstsplit[3].split(',"id":"')
 
 displaysrc_length = len(displaysrc)-1
 
-# store values in lists
+# store raw src to be split
 raw_src = []
+
+# store ID's 
 list_ID = []
 
 for i in range(1,displaysrc_length):
@@ -79,7 +87,11 @@ for i in range(1,displaysrc_length):
     #print rawID[0]
     
 raw_src_length = len(raw_src)-1
+
+# store real src URLs
 list_src = []
+
+# store [[ID, SRC]] to be used in index template
 the_list = []
 
 for src in range(0, raw_src_length):
@@ -87,10 +99,7 @@ for src in range(0, raw_src_length):
     list_src.append(srcreplaced)
     tmp_list = [srcreplaced, list_ID[src]]
     the_list.append(tmp_list)
-    #print srcreplaced
 
-#for l in range(0,len(the_list)-1):
- #   print the_list[l]
 
 # configuration
 DATABASE = '/tmp/insta.db'
@@ -104,14 +113,12 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('INSTA_SETTINGS', silent=True)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_FOLDER = os.path.join(APP_ROOT, 'static/')
 LIKES_FOLDER = os.path.join(APP_ROOT, 'static/like/')
 SUPER_FOLDER = os.path.join(APP_ROOT, 'static/super/')
 EDITED_SUPER_FOLDER = os.path.join(APP_ROOT, 'static/edited_super/')
 app.config['like'] = LIKES_FOLDER
 app.config['super'] = SUPER_FOLDER
 app.config['edited_super'] = EDITED_SUPER_FOLDER
-app.config['static'] = STATIC_FOLDER
 SCREEN_TOTAL = 7
 
 # jug = Juggernaut()
@@ -144,6 +151,7 @@ def query_db(query, args=(), one=False):
 
 @app.route('/')
 def root():
+    # render index and pass on ID+SRC of each image
     return render_template('index.html', src=the_list)
 
 @app.route('/store/<img_type>/<insta_id>', methods=['POST'])
