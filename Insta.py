@@ -154,15 +154,16 @@ def upload_complete(data):
 @app.route('/download/')
 def download():
     files = [open(os.path.join(app.config['super'], f)) for f in os.listdir(app.config['super']) if os.path.isfile(os.path.join(app.config['super'], f))]
-    memory_file = BytesIO()
-    with zipfile.ZipFile(memory_file, 'w') as zf:
-        for individualFile in files:
-            data = zipfile.ZipInfo(os.path.basename(individualFile.name))
-            data.date_time = time.localtime(time.time())[:6]
-            data.compress_type = zipfile.ZIP_DEFLATED
-            zf.writestr(data, individualFile.read())
-    memory_file.seek(0)
-    return send_file(memory_file, attachment_filename='super_likes.zip', as_attachment=True)
+    if(len(files)):
+        memory_file = BytesIO()
+        with zipfile.ZipFile(memory_file, 'w') as zf:
+            for individualFile in files:
+                data = zipfile.ZipInfo(os.path.basename(individualFile.name))
+                data.date_time = time.localtime(time.time())[:6]
+                data.compress_type = zipfile.ZIP_DEFLATED
+                zf.writestr(data, individualFile.read())
+        memory_file.seek(0)
+        return send_file(memory_file, attachment_filename='super_likes.zip', as_attachment=True)
 
 def get_filename_from_id(insta_id):
     image = query_db('select img_type, filename from ids where insta_id = ?', [insta_id], one=True)
