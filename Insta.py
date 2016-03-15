@@ -1,7 +1,7 @@
 # all the imports
 import os
 from sqlite3 import dbapi2 as sqlite3
-from flask import request, g, render_template, json, jsonify, send_from_directory, session, send_file
+from flask import request, g, render_template, json, jsonify, send_file
 from flask_socketio import SocketIO, emit, join_room
 from contextlib import closing
 from werkzeug import secure_filename
@@ -29,44 +29,15 @@ EDITED_SUPER_FOLDER = os.path.join(APP_ROOT, 'static/edited_super/')
 app.config['like'] = LIKES_FOLDER
 app.config['super'] = SUPER_FOLDER
 app.config['edited_super'] = EDITED_SUPER_FOLDER
-SCREEN_TOTAL = 7
+SCREEN_TOTAL = 2
 
 jsglue = JSGlue(app)
 
-async_mode = None
-
-if async_mode is None:
-    try:
-        import eventlet
-        async_mode = 'eventlet'
-    except ImportError:
-        pass
-
-    if async_mode is None:
-        try:
-            from gevent import monkey
-            async_mode = 'gevent'
-        except ImportError:
-            pass
-
-    if async_mode is None:
-        async_mode = 'threading'
-
-    print('async_mode is ' + async_mode)
-
-socketio = SocketIO(app, async_mode=async_mode)
-
-# monkey patching is necessary because this application uses a background
-# thread
-if async_mode == 'eventlet':
-    import eventlet
-    eventlet.monkey_patch()
-elif async_mode == 'gevent':
-    from gevent import monkey
-    monkey.patch_all()
+socketio = SocketIO(app)
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
+
 
 def init_db():
     with closing(connect_db()) as db:
@@ -74,10 +45,12 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+
 @app.before_request
 def before_request():
     g.db = connect_db()
     g.db.row_factory = sqlite3.Row
+
 
 @app.teardown_request
 def teardown_request(exception):
@@ -85,11 +58,13 @@ def teardown_request(exception):
     if db is not None:
         db.close()
 
+
 def query_db(query, args=(), one=False):
     cur = g.db.execute(query, args)
     rv = cur.fetchall()
     cur.close()
     return (rv[0] if rv else None) if one else rv
+
 
 def insert(table, fields=(), values=()):
     # g.db is the database connection
@@ -105,9 +80,11 @@ def insert(table, fields=(), values=()):
     cur.close()
     return id
 
+
 @app.route('/')
 def root():
     return render_template('index.html')
+
 
 def add_file(file, img_type):
     # TODO: add error handling if file not there
@@ -116,40 +93,47 @@ def add_file(file, img_type):
         path = os.path.join(app.config[img_type], filename)
         file.save(path)
 
+
 @app.route('/store/<img_type>/<insta_id>', methods=['POST'])
 def store(img_type, insta_id=None):
     file = request.files['file']
     filename = file.filename
     # TODO: notify javascript to continue labelling as ignore if error
-    add_file(file, img_type)
     delete(insta_id)
+    add_file(file, img_type)
     if img_type == 'like':
         insert('active', ('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id))
     insert('ids', ('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id))
     return json.dumps({'status': 'OK'})
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
         file = request.files['file']
         filename = file.filename
-        # TODO: talk to andrew and sitraka about if we want insta_id, does it matter?
-        # insta_id = filename.split('.')[0]  # Assumes that the filename stays the same
-        # TODO: unique upload for super likes? currently can upload file with same filename
+        insta_id = filename.split('.')[0]  # Assumes that the filename stays the same
         img_type = 'edited_super'
-        add_file(file, img_type)
-        row_id = insert('active',('img_type', 'filename'), (img_type, filename))
-        room = row_id % SCREEN_TOTAL
-        image = {'img_type': img_type, 'filename': filename}
-        return jsonify({'image': image, 'room': room})
+        image = query_db('select * from active where filename = ?', [filename], one=True)
+        if image is None:
+            add_file(file, img_type)
+            row_id = insert('active',('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id)) - 1
+            print row_id
+            room = row_id % SCREEN_TOTAL
+            print room
+            image = {'img_type': img_type, 'filename': filename}
+            return jsonify({'image': image, 'room': room})
+        return jsonify({'error': 'File already exists'})
     else:
         return render_template('upload.html')
+
 
 @socketio.on('upload complete', namespace='/slides')
 def upload_complete(data):
     """Sent by clients when they enter a room.
     A status message is broadcast to all people in the room."""
     emit('new-slide', data['image'], room=int(data['room']))
+
 
 @app.route('/download/')
 def download():
@@ -164,6 +148,9 @@ def download():
                 zf.writestr(data, individualFile.read())
         memory_file.seek(0)
         return send_file(memory_file, attachment_filename='super_likes.zip', as_attachment=True)
+    else:
+        return render_template('error.html', message='No files')
+
 
 def get_filename_from_id(insta_id):
     image = query_db('select img_type, filename from ids where insta_id = ?', [insta_id], one=True)
@@ -171,6 +158,7 @@ def get_filename_from_id(insta_id):
     if image is not None:
         path = os.path.join(app.config[image['img_type']], image['filename'])
     return path
+
 
 def remove_file(path):
     if path is not None:
@@ -181,6 +169,7 @@ def remove_file(path):
             return False
     return False
 
+
 @app.route('/delete/<insta_id>', methods=['DELETE'])
 def delete(insta_id):
     path = get_filename_from_id(insta_id)
@@ -189,15 +178,17 @@ def delete(insta_id):
         query_db('delete from active where insta_id = ?', [insta_id])
         query_db('delete from ids where insta_id = ?', [insta_id])
         g.db.commit()
-    return json.dumps({'status':'OK'})
+    return json.dumps({'status': 'OK'})
 
-def delete_file_with_name(filename):
-    exists = remove_file(filename)
+
+def delete_file_with_name(path, filename):
+    exists = remove_file(path)
     if exists:
         query_db('delete from active where filename = ?', [filename])
         query_db('delete from ids where filename = ?', [filename])
         g.db.commit()
-    return json.dumps({'status':'OK'})
+    return json.dumps({'status': 'OK'})
+
 
 @app.route('/check_id/<insta_id>')
 def check_id(insta_id):
@@ -208,15 +199,11 @@ def check_id(insta_id):
         id_val = id_val[0]
     return jsonify({'idValue': id_val})
 
-@app.route('/get_super/')
-def get_super():
-    return send_from_directory(app.config['super'])
 
 @app.route('/slideshow/<index>')
 def slideshow(index):
     index = int(index)
     all_images = query_db('select img_type, filename from active order by id ASC')
-    session['room'] = index
     if len(all_images) == 0:
         return render_template('error.html', message='No images yoo')
     elif index >= len(all_images):
@@ -228,14 +215,11 @@ def slideshow(index):
         index += SCREEN_TOTAL
     return render_template('slideshow.html', images=images)
 
+
 @socketio.on('joined', namespace='/slides')
 def joined(data):
     room = int(data['room'])
     join_room(room)
-
-# TODO: ask andrew about the case where super_like is uploaded and then needs to be removed - if they keep filename the same it'll be easy
-
-# TODO: download all super likes
 
 # TODO: make uploading unique i.e. no duplicates
 

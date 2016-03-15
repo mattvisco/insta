@@ -7,8 +7,10 @@ $(function() {
     socket = io.connect('http://' + document.domain + ':' + location.port + '/slides');
 
     $('#super-upload').ajaxForm(function(data) {
-        socket.emit('upload complete', data);
+        if(data.error) alert(data.error);
+        else {
+            alert('Success');
+            socket.emit('upload complete', data);
+        }
     });
-
-    socket.on('new_slide', function(){console.log('got eeeem')});
 });
