@@ -130,7 +130,7 @@ def upload():
     if request.method == 'POST':
         file = request.files['file']
         filename = file.filename
-        # TODO: talk to andrew and sitrak about if we want insta_id, does it matter?
+        # TODO: talk to andrew and sitraka about if we want insta_id, does it matter?
         # insta_id = filename.split('.')[0]  # Assumes that the filename stays the same
         img_type = 'edited_super'
         add_file(file, img_type)
