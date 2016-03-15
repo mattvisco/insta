@@ -1,10 +1,9 @@
 /**
  * Created by M on 2/29/16.
  */
-//localStorage.debug = '*';
 
 var SLIDESHOW = {
-    SLIDESHOWTIMEOUT: 1000,
+    SLIDESHOWTIMEOUT: 3000,
 
     slides: [],
     index: 0,
@@ -28,7 +27,6 @@ var SLIDESHOW = {
     },
 
     startSlideshow: function() {
-        console.log('http://' + document.domain + ':' + location.port + '/slides');
         this.socket = io.connect('http://' + document.domain + ':' + location.port + '/slides');
         this.socket.on('connect', function() {
             console.log('joined')
@@ -44,8 +42,10 @@ var SLIDESHOW = {
         console.log('new slide!');
         clearTimeout(SLIDESHOW.slideTimeout);
         var image = new Image();
+        $(image).addClass('slideshow-image');
         image.src = Flask.url_for("static", {"filename": data.img_type + '/' + data.filename});
         SLIDESHOW.slides[SLIDESHOW.prevIndex].insertAdjacentElement("afterEnd", image);
+        SLIDESHOW.slides = $('.slideshow-image');
         SLIDESHOW.showSlide();
     }
 };

@@ -1,12 +1,15 @@
 # all the imports
 import os
 from sqlite3 import dbapi2 as sqlite3
-from flask import request, g, render_template, json, jsonify, send_from_directory, session
+from flask import request, g, render_template, json, jsonify, send_from_directory, session, send_file
 from flask_socketio import SocketIO, emit, join_room
 from contextlib import closing
 from werkzeug import secure_filename
 from flask import Flask
 from flask_jsglue import JSGlue
+import zipfile
+from io import BytesIO
+import time
 
 # configuration
 DATABASE = '/tmp/insta.db'
@@ -132,6 +135,7 @@ def upload():
         filename = file.filename
         # TODO: talk to andrew and sitraka about if we want insta_id, does it matter?
         # insta_id = filename.split('.')[0]  # Assumes that the filename stays the same
+        # TODO: unique upload for super likes? currently can upload file with same filename
         img_type = 'edited_super'
         add_file(file, img_type)
         row_id = insert('active',('img_type', 'filename'), (img_type, filename))
@@ -145,24 +149,52 @@ def upload():
 def upload_complete(data):
     """Sent by clients when they enter a room.
     A status message is broadcast to all people in the room."""
-    print '*****Upload Super********'
-
     emit('new-slide', data['image'], room=int(data['room']))
 
-def remove_file(insta_id):
+@app.route('/download/')
+def download():
+    files = [open(os.path.join(app.config['super'], f)) for f in os.listdir(app.config['super']) if os.path.isfile(os.path.join(app.config['super'], f))]
+    memory_file = BytesIO()
+    with zipfile.ZipFile(memory_file, 'w') as zf:
+        for individualFile in files:
+            data = zipfile.ZipInfo(os.path.basename(individualFile.name))
+            data.date_time = time.localtime(time.time())[:6]
+            data.compress_type = zipfile.ZIP_DEFLATED
+            zf.writestr(data, individualFile.read())
+    memory_file.seek(0)
+    return send_file(memory_file, attachment_filename='super_likes.zip', as_attachment=True)
+
+def get_filename_from_id(insta_id):
     image = query_db('select img_type, filename from ids where insta_id = ?', [insta_id], one=True)
+    path = None
     if image is not None:
         path = os.path.join(app.config[image['img_type']], image['filename'])
-        os.remove(path)
-        return True
+    return path
+
+def remove_file(path):
+    if path is not None:
+        try:
+            os.remove(path)
+            return True
+        except:
+            return False
     return False
 
 @app.route('/delete/<insta_id>', methods=['DELETE'])
 def delete(insta_id):
-    exists = remove_file(insta_id)
+    path = get_filename_from_id(insta_id)
+    exists = remove_file(path)
     if exists:
         query_db('delete from active where insta_id = ?', [insta_id])
         query_db('delete from ids where insta_id = ?', [insta_id])
+        g.db.commit()
+    return json.dumps({'status':'OK'})
+
+def delete_file_with_name(filename):
+    exists = remove_file(filename)
+    if exists:
+        query_db('delete from active where filename = ?', [filename])
+        query_db('delete from ids where filename = ?', [filename])
         g.db.commit()
     return json.dumps({'status':'OK'})
 
