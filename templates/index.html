@@ -6,6 +6,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/vendor/jquery-1.12.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/vendor/canvas-to-blob.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/store-images.js') }}"></script>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     {# TODO: get for to post to /super/ #}
@@ -13,18 +14,27 @@
       <p><input type=file name=file>
          <input type=submit value=Upload>
     </form>
-    <div class="insta-holders" id="432">
-        <img class="insta-image" src="../static/images/7.jpg"/>
-        <label for="like">Like</label>
-        <input type="radio" name="store_image_0" value="like">
-        <label for="super">Super Like</label>
-        <input type="radio" name="store_image_0" value="super">
-        <label for="ignore">Ignore</label>
-        <input type="radio" name="store_image_0" value="delete">
+    <div class="contain-holders">
+        {% for H in src %}
+        <div class="insta-holders" id="{{H[1]}}">
+            <div class="insta-img-mask">
+                <img class="insta-image" src="{{H[0]}}"/>
+            </div>
+            <div class="butts">
+                <label for="like">Like</label>
+                <input type="radio" name="store_image_0" value="like">
+                <label for="super">Super Like</label>
+                <input type="radio" name="store_image_0" value="super">
+                <label for="ignore">Ignore</label>
+                <input type="radio" name="store_image_0" value="delete">
+            </div>
+        </div>
+        {% endfor %}
     </div>
+    
 
     <br><br>
-
+<!--
     <div class="insta-holders" id="42432">
         <img class="insta-image" src="../static/images/snurfer4.jpg"/>
         <label for="like">Like</label>
@@ -46,6 +56,6 @@
         <label for="ignore">Ignore</label>
         <input type="radio" name="store_image_2" value="delete">
     </div>
-
+-->
 </body>
 </html>
