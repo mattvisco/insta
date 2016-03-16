@@ -1,3 +1,49 @@
 .slideshow-image {
     display: none;
 }
+.contain-holders
+{
+	margin:0px;
+	padding: 20px;
+}
+.insta-holders
+{
+	width: 250px;
+	height:300px;
+	float: left;
+	font-family: sans-serif;
+	font-size: 12px;
+	border-bottom: thin solid lightblue;
+	margin-bottom: 20px;
+}
+.insta-img-mask
+{
+	width: 230px;
+	height: 230px;
+	overflow: hidden;
+	position: absolute;
+	padding: 10px;
+}
+.insta-image
+{
+	width: 230px;
+	position: absolute;
+	padding: 10px;
+}
+.butts
+{
+	width: 250px;
+	text-align: center;
+	padding: 8px;
+	margin-top:250px;
+	margin: 250px auto 0px;
+}
+body
+{
+	margin: 0px;
+}
+form
+{
+	padding:20px 40px;
+	border-bottom: thin solid black;
+}

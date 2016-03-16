@@ -11,6 +11,99 @@ import zipfile
 from io import BytesIO
 import time
 
+#pycURL imports
+import pycurl, json
+import re
+import StringIO
+import string
+
+# Login and crawling for #bestview(->to be changed for #emojimilan in final)  
+
+# request instagram login
+b = StringIO.StringIO()
+c = pycurl.Curl()
+c.setopt(pycurl.URL, 'https://instagram.com/accounts/login/?force_classic_login')
+c.setopt(pycurl.REFERER, 'https://instagram.com/accounts/login/?force_classic_login')
+c.setopt(pycurl.FOLLOWLOCATION, True)
+c.setopt(pycurl.SSL_VERIFYPEER, False)
+c.setopt(pycurl.WRITEFUNCTION, b.write)
+c.setopt(pycurl.COOKIEFILE, 'cookiess.txt')
+c.setopt(pycurl.COOKIEJAR, 'cookiess.txt')
+page = c.perform()
+c.close()
+
+# preg_match that doesn't really work
+links = re.findall('<input type="hidden" name="csrfmiddlewaretoken" value="([A-z0-9]{32})"/>', b.getvalue())
+
+# Log into instagram using username+password(-> need to get one from students or whoever) and token retrieved in Links 
+# (I actually hard coded the token, since my re.findall didn't work)
+c = pycurl.Curl()
+c.setopt(pycurl.URL, 'https://instagram.com/accounts/login/?force_classic_login')
+c.setopt(pycurl.REFERER, 'https://instagram.com/accounts/login/?force_classic_login')
+c.setopt(pycurl.WRITEFUNCTION, b.write)
+c.setopt(pycurl.POST, True)
+c.setopt(pycurl.SSL_VERIFYPEER, False)
+c.setopt(pycurl.FOLLOWLOCATION, True)
+c.setopt(pycurl.POSTFIELDS, "csrfmiddlewaretoken=336ce9019884103a0a3a87dd639c1803&username=[instalia.larinascente]&password=[circlecrackers]")
+c.setopt(pycurl.COOKIEFILE, 'cookiess.txt')
+c.setopt(pycurl.COOKIEJAR, 'cookiess.txt')
+page = c.perform()
+c.close()
+
+# retrieve 'search for #bestview tag' page and store images data in b object
+c = pycurl.Curl()
+c.setopt(pycurl.URL, 'https://www.instagram.com/explore/tags/bestview/')
+c.setopt(pycurl.REFERER, 'https://instagram.com/')
+c.setopt(pycurl.HTTPHEADER, [
+        'Accept-Language: en-US,en;q=0.8',
+        'User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36',
+        'Accept: */*',
+        'X-Requested-With: XMLHttpRequest',
+        'Connection: keep-alive'
+        ])
+c.setopt(pycurl.WRITEFUNCTION, b.write)
+c.setopt(pycurl.SSL_VERIFYPEER, False)
+c.setopt(pycurl.FOLLOWLOCATION, True)
+c.setopt(pycurl.COOKIEFILE, 'cookiess.txt')
+c.setopt(pycurl.COOKIEJAR, 'cookiess.txt')
+page = c.perform()
+c.close()
+
+# print the values from b into string variables and parse them
+rawpage = b.getvalue()
+firstsplit = rawpage.split('window._sharedData')
+displaysrc = firstsplit[3].split('"display_src":"')
+displayID = firstsplit[3].split(',"id":"')
+
+displaysrc_length = len(displaysrc)-1
+
+# store raw src to be split
+raw_src = []
+
+# store ID's 
+list_ID = []
+
+for i in range(1,displaysrc_length):
+    rawsrc = displaysrc[i].split('?ig_cache_key')
+    rawID = displayID[i].split('","display_src"')
+    raw_src.append(rawsrc[0])
+    list_ID.append(rawID[0])
+    #print rawID[0]
+    
+raw_src_length = len(raw_src)-1
+
+# store real src URLs
+list_src = []
+
+# store [[ID, SRC]] to be used in index template
+the_list = []
+
+for src in range(0, raw_src_length):
+    srcreplaced = raw_src[src].replace("\/", "/")
+    list_src.append(srcreplaced)
+    tmp_list = [srcreplaced, list_ID[src]]
+    the_list.append(tmp_list)
+
 # configuration
 DATABASE = '/tmp/insta.db'
 DEBUG = True
@@ -83,7 +176,7 @@ def insert(table, fields=(), values=()):
 
 @app.route('/')
 def root():
-    return render_template('index.html')
+    return render_template('index.html', src=the_list)
 
 
 def add_file(file, img_type):
@@ -226,3 +319,4 @@ def joined(data):
 if __name__ == '__main__':
     init_db()
     socketio.run(app)
+
