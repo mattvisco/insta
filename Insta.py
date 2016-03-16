@@ -12,7 +12,7 @@ from io import BytesIO
 import time
 
 #pycURL imports
-import pycurl, json
+import pycurl
 import re
 import StringIO
 import string
@@ -122,7 +122,7 @@ EDITED_SUPER_FOLDER = os.path.join(APP_ROOT, 'static/edited_super/')
 app.config['like'] = LIKES_FOLDER
 app.config['super'] = SUPER_FOLDER
 app.config['edited_super'] = EDITED_SUPER_FOLDER
-SCREEN_TOTAL = 2
+SCREEN_TOTAL = 7
 
 jsglue = JSGlue(app)
 
