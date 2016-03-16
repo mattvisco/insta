@@ -69,7 +69,6 @@ var INSTAAPI = {
         var url = '/check_id/' + id;
         var success = function(response) {
             var val = response.idValue;
-            if (val == 'edited_super') val = 'super'; // TODO: set another thing to mark it as edited
             holder.find("input[value='"+val+"']").get(0).checked = 'checked';
         };
         var request = {

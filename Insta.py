@@ -10,6 +10,7 @@ from flask_jsglue import JSGlue
 import zipfile
 from io import BytesIO
 import time
+<<<<<<< HEAD
 
 #pycURL imports
 import pycurl, json
@@ -103,6 +104,8 @@ for src in range(0, raw_src_length):
     list_src.append(srcreplaced)
     tmp_list = [srcreplaced, list_ID[src]]
     the_list.append(tmp_list)
+=======
+>>>>>>> 94d798a6152c24f733099272c95e1167bd1c01cc
 
 # configuration
 DATABASE = '/tmp/insta.db'
@@ -334,4 +337,8 @@ def joined(data):
 
 if __name__ == '__main__':
     init_db()
+<<<<<<< HEAD
     socketio.run(app)
+=======
+    socketio.run(app)
+>>>>>>> 94d798a6152c24f733099272c95e1167bd1c01cc
