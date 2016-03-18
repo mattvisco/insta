@@ -97,4 +97,5 @@ $(function() {
         /* --------------------------------------------------- */
     });
     $("input[type='radio']").click(INSTAAPI.radioClick);
+    
 });
