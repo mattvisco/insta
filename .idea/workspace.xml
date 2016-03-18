@@ -14,7 +14,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Insta$Insta.coverage" NAME="Insta Coverage Results" MODIFIED="1458148992690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Insta$Insta.coverage" NAME="Insta Coverage Results" MODIFIED="1458260049385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -28,37 +28,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="store-images.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="store-images.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/javascript/store-images.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.814815" vertical-offset="1180" max-vertical-offset="1575">
-              <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.057377048" vertical-offset="1209" max-vertical-offset="1575">
+              <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Insta.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Insta.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Insta.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58900523" vertical-offset="1635" max-vertical-offset="4920">
-              <caret line="124" column="16" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
+            <state vertical-scroll-proportion="-5.232143" vertical-offset="2662" max-vertical-offset="5175">
+              <caret line="197" column="20" selection-start-line="197" selection-start-column="20" selection-end-line="197" selection-end-column="20" />
               <folding>
                 <element signature="e#18#27#0" expanded="true" />
-                <marker date="1458149194000" expanded="true" signature="5030:5061" placeholder="INSERT INTO ..." />
-                <marker date="1458149194000" expanded="true" signature="6413:6452" placeholder="select * fro..active..." />
-                <marker date="1458149194000" expanded="true" signature="8056:8109" placeholder="select img_t..ids..." />
-                <marker date="1458149194000" expanded="true" signature="8617:8654" placeholder="delete from ..." />
-                <marker date="1458149194000" expanded="true" signature="8648:8682" placeholder="delete from ..." />
-                <marker date="1458149194000" expanded="true" signature="8733:8767" placeholder="delete from ..." />
-                <marker date="1458149194000" expanded="true" signature="8907:8944" placeholder="delete from ..." />
-                <marker date="1458149194000" expanded="true" signature="8938:8972" placeholder="delete from ..." />
-                <marker date="1458149194000" expanded="true" signature="9023:9057" placeholder="delete from ..." />
-                <marker date="1458149194000" expanded="true" signature="9159:9202" placeholder="select img_t..ids..." />
-                <marker date="1458149194000" expanded="true" signature="9218:9261" placeholder="select img_t..ids..." />
-                <marker date="1458149194000" expanded="true" signature="9474:9527" placeholder="select img_t..active..." />
+                <marker date="1458261168000" expanded="true" signature="5632:5663" placeholder="INSERT INTO ..." />
+                <marker date="1458261168000" expanded="true" signature="7437:7476" placeholder="select * fro..active..." />
+                <marker date="1458261168000" expanded="true" signature="9028:9081" placeholder="select img_t..ids..." />
+                <marker date="1458261168000" expanded="true" signature="9589:9626" placeholder="delete from ..." />
+                <marker date="1458261168000" expanded="true" signature="9620:9654" placeholder="delete from ..." />
+                <marker date="1458261168000" expanded="true" signature="9705:9739" placeholder="delete from ..." />
+                <marker date="1458261168000" expanded="true" signature="9879:9916" placeholder="delete from ..." />
+                <marker date="1458261168000" expanded="true" signature="9910:9944" placeholder="delete from ..." />
+                <marker date="1458261168000" expanded="true" signature="9995:10029" placeholder="delete from ..." />
+                <marker date="1458261168000" expanded="true" signature="10131:10174" placeholder="select img_t..ids..." />
+                <marker date="1458261168000" expanded="true" signature="10190:10233" placeholder="select img_t..ids..." />
+                <marker date="1458261168000" expanded="true" signature="10446:10499" placeholder="select img_t..active..." />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0" vertical-offset="60" max-vertical-offset="600">
+              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cookiess.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cookiess.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="225">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
           </provider>
         </entry>
       </file>
@@ -112,26 +135,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="810">
-              <caret line="48" column="1" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.875" vertical-offset="195" max-vertical-offset="720">
-              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="IdeDocumentHistory">
@@ -148,11 +151,12 @@
         <option value="$PROJECT_DIR$/templates/layout.html" />
         <option value="$PROJECT_DIR$/templates/upload.html" />
         <option value="$PROJECT_DIR$/schema.sql" />
-        <option value="$PROJECT_DIR$/static/javascript/store-images.js" />
         <option value="$PROJECT_DIR$/static/javascript/slideshow.js" />
         <option value="$PROJECT_DIR$/static/javascript/upload.js" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/templates/insta-holder.html" />
         <option value="$PROJECT_DIR$/Insta.py" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/static/javascript/store-images.js" />
       </list>
     </option>
   </component>
@@ -229,6 +233,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Insta" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Insta" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascript" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -492,7 +514,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -502,7 +524,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40239045" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.246875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.246875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -553,18 +575,18 @@
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="e#18#27#0" expanded="true" />
-            <marker date="1458149194000" expanded="true" signature="5030:5061" placeholder="INSERT INTO ..." />
-            <marker date="1458149194000" expanded="true" signature="6413:6452" placeholder="select * fro..active..." />
-            <marker date="1458149194000" expanded="true" signature="8056:8109" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="8617:8654" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8648:8682" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8733:8767" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8907:8944" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8938:8972" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9023:9057" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9159:9202" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9218:9261" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9474:9527" placeholder="select img_t..active..." />
+            <marker date="1458261168000" expanded="true" signature="5632:5663" placeholder="INSERT INTO ..." />
+            <marker date="1458261168000" expanded="true" signature="7437:7476" placeholder="select * fro..active..." />
+            <marker date="1458261168000" expanded="true" signature="9028:9081" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="9589:9626" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9620:9654" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9705:9739" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9879:9916" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9910:9944" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9995:10029" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="10131:10174" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10190:10233" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10446:10499" placeholder="select img_t..active..." />
           </folding>
         </state>
       </provider>
@@ -639,18 +661,18 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#18#27#0" expanded="true" />
-            <marker date="1458149194000" expanded="true" signature="5030:5061" placeholder="INSERT INTO ..." />
-            <marker date="1458149194000" expanded="true" signature="6413:6452" placeholder="select * fro..active..." />
-            <marker date="1458149194000" expanded="true" signature="8056:8109" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="8617:8654" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8648:8682" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8733:8767" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8907:8944" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8938:8972" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9023:9057" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9159:9202" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9218:9261" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9474:9527" placeholder="select img_t..active..." />
+            <marker date="1458261168000" expanded="true" signature="5632:5663" placeholder="INSERT INTO ..." />
+            <marker date="1458261168000" expanded="true" signature="7437:7476" placeholder="select * fro..active..." />
+            <marker date="1458261168000" expanded="true" signature="9028:9081" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="9589:9626" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9620:9654" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9705:9739" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9879:9916" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9910:9944" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9995:10029" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="10131:10174" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10190:10233" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10446:10499" placeholder="select img_t..active..." />
           </folding>
         </state>
       </provider>
@@ -709,18 +731,18 @@
           <caret line="42" column="71" selection-start-line="42" selection-start-column="71" selection-end-line="42" selection-end-column="71" />
           <folding>
             <element signature="e#18#27#0" expanded="true" />
-            <marker date="1458149194000" expanded="true" signature="5030:5061" placeholder="INSERT INTO ..." />
-            <marker date="1458149194000" expanded="true" signature="6413:6452" placeholder="select * fro..active..." />
-            <marker date="1458149194000" expanded="true" signature="8056:8109" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="8617:8654" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8648:8682" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8733:8767" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8907:8944" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8938:8972" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9023:9057" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9159:9202" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9218:9261" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9474:9527" placeholder="select img_t..active..." />
+            <marker date="1458261168000" expanded="true" signature="5632:5663" placeholder="INSERT INTO ..." />
+            <marker date="1458261168000" expanded="true" signature="7437:7476" placeholder="select * fro..active..." />
+            <marker date="1458261168000" expanded="true" signature="9028:9081" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="9589:9626" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9620:9654" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9705:9739" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9879:9916" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9910:9944" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9995:10029" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="10131:10174" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10190:10233" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10446:10499" placeholder="select img_t..active..." />
           </folding>
         </state>
       </provider>
@@ -779,18 +801,18 @@
           <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
           <folding>
             <element signature="e#18#27#0" expanded="true" />
-            <marker date="1458149194000" expanded="true" signature="5030:5061" placeholder="INSERT INTO ..." />
-            <marker date="1458149194000" expanded="true" signature="6413:6452" placeholder="select * fro..active..." />
-            <marker date="1458149194000" expanded="true" signature="8056:8109" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="8617:8654" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8648:8682" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8733:8767" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8907:8944" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8938:8972" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9023:9057" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9159:9202" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9218:9261" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9474:9527" placeholder="select img_t..active..." />
+            <marker date="1458261168000" expanded="true" signature="5632:5663" placeholder="INSERT INTO ..." />
+            <marker date="1458261168000" expanded="true" signature="7437:7476" placeholder="select * fro..active..." />
+            <marker date="1458261168000" expanded="true" signature="9028:9081" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="9589:9626" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9620:9654" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9705:9739" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9879:9916" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9910:9944" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9995:10029" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="10131:10174" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10190:10233" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10446:10499" placeholder="select img_t..active..." />
           </folding>
         </state>
       </provider>
@@ -875,22 +897,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/upload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="330">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/slideshow.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="240">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/javascript/slideshow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
@@ -923,41 +929,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/javascript/store-images.js">
+    <entry file="file://$PROJECT_DIR$/cookiess.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.814815" vertical-offset="1180" max-vertical-offset="1575">
-          <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="379">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="330">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/slideshow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="240">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.875" vertical-offset="195" max-vertical-offset="720">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        <state vertical-scroll-proportion="-5.0" vertical-offset="60" max-vertical-offset="600">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Insta.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58900523" vertical-offset="1635" max-vertical-offset="4920">
-          <caret line="124" column="16" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
+        <state vertical-scroll-proportion="-5.232143" vertical-offset="2662" max-vertical-offset="5175">
+          <caret line="197" column="20" selection-start-line="197" selection-start-column="20" selection-end-line="197" selection-end-column="20" />
           <folding>
             <element signature="e#18#27#0" expanded="true" />
-            <marker date="1458149194000" expanded="true" signature="5030:5061" placeholder="INSERT INTO ..." />
-            <marker date="1458149194000" expanded="true" signature="6413:6452" placeholder="select * fro..active..." />
-            <marker date="1458149194000" expanded="true" signature="8056:8109" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="8617:8654" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8648:8682" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8733:8767" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8907:8944" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="8938:8972" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9023:9057" placeholder="delete from ..." />
-            <marker date="1458149194000" expanded="true" signature="9159:9202" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9218:9261" placeholder="select img_t..ids..." />
-            <marker date="1458149194000" expanded="true" signature="9474:9527" placeholder="select img_t..active..." />
+            <marker date="1458261168000" expanded="true" signature="5632:5663" placeholder="INSERT INTO ..." />
+            <marker date="1458261168000" expanded="true" signature="7437:7476" placeholder="select * fro..active..." />
+            <marker date="1458261168000" expanded="true" signature="9028:9081" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="9589:9626" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9620:9654" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9705:9739" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9879:9916" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9910:9944" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="9995:10029" placeholder="delete from ..." />
+            <marker date="1458261168000" expanded="true" signature="10131:10174" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10190:10233" placeholder="select img_t..ids..." />
+            <marker date="1458261168000" expanded="true" signature="10446:10499" placeholder="select img_t..active..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/javascript/store-images.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.057377048" vertical-offset="1209" max-vertical-offset="1575">
+          <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

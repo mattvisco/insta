@@ -9,6 +9,11 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <nav>
+        <a href='/'>Home</a>
+        <a id="prev" href='/prev/{{ prev }}'>Prev</a>
+        <a id="next" href='/next/{{ next }}'>Next</a>
+    </nav>
     <div class="contain-holders">
         {% for H in src %}
         <div class="insta-holders" id="{{H[1]}}">
@@ -25,19 +30,6 @@
             </div>
         </div>
         {% endfor %}
-
-
-<!--
-    <div class="insta-holders" id="42432">
-        <img class="insta-image" src="../static/images/snurfer4.jpg"/>
-        <label for="like">Like</label>
-        <input type="radio" name="store_image_1" value="like">
-        <label for="super">Super Like</label>
-        <input type="radio" name="store_image_1" value="super">
-        <label for="ignore">Ignore</label>
-        <input type="radio" name="store_image_1" value="delete">
     </div>
-
--->
 </body>
 </html>

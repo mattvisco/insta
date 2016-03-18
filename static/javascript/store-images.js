@@ -87,7 +87,7 @@ $(function() {
     var i = 0;
     $('.insta-holders').each(function(){
         INSTAAPI.checkIds(this);
-        
+
         /* increment the inputs name attribute for each holder */
         $(this).find('input').each(function(){
             var new_name = 'store_image_'+i;
