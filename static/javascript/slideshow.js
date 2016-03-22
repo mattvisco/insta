@@ -10,6 +10,9 @@ var SLIDESHOW = {
     prevIndex: -1,
     socket: null,
     slideTimeout: null,
+    /* added height properties */
+    height: null,
+    diffHeight: 0,
 
     getRoom: function() {
         var locationArr = window.location.pathname.split('/');
@@ -20,10 +23,19 @@ var SLIDESHOW = {
     showSlide: function() {
         if(SLIDESHOW.prevIndex != -1) $(SLIDESHOW.slides[SLIDESHOW.prevIndex]).hide();
         $(SLIDESHOW.slides[SLIDESHOW.index]).show();
+
+        /* Get shown slide's height */
+        SLIDESHOW.height = $(SLIDESHOW.slides[SLIDESHOW.index]).height();
+
         SLIDESHOW.prevIndex = SLIDESHOW.index;
         SLIDESHOW.index++;
         if (SLIDESHOW.index >= SLIDESHOW.slides.length) SLIDESHOW.index = 0;
-        SLIDESHOW.slideTimeout = setTimeout(SLIDESHOW.showSlide, SLIDESHOW.SLIDESHOWTIMEOUT);
+        SLIDESHOW.slideTimeout = setTimeout(SLIDESHOW.showSlide, SLIDESHOW.SLIDESHOWTIMEOUT); 
+
+        /* compare slide/window heights and center image */      
+        if(SLIDESHOW.height > $(window).height()) SLIDESHOW.diffHeight = 1;
+        if(SLIDESHOW.height < $(window).height()) SLIDESHOW.diffHeight = 0;
+        SLIDESHOW.centerSlide(SLIDESHOW.diffHeight); 
     },
 
     startSlideshow: function() {
@@ -47,9 +59,20 @@ var SLIDESHOW = {
         SLIDESHOW.slides[SLIDESHOW.prevIndex].insertAdjacentElement("afterEnd", image);
         SLIDESHOW.slides = $('.slideshow-image');
         SLIDESHOW.showSlide();
+    },
+    /* center image */
+    centerSlide: function(diff) {
+        var d = Math.abs(SLIDESHOW.height - $(window).height())/2;       
+        if (diff==1) {
+            d = d * -1;
+        }else{
+            d = d;
+        };
+        SLIDESHOW.slides.css('margin-top', d);
     }
 };
 
 $(function() {
+    $('body').css('background-color', '#000');
     SLIDESHOW.startSlideshow();
 });
