@@ -1,6 +1,18 @@
+
 .slideshow-image {
+	position: fixed;
+	top: 0;
+	transform: translateY(50%);
     display: none;
+    width: 100%
 }
+#slideshow-holder
+{
+	position: relative;
+}
+	
+
+
 .contain-holders
 {
 	margin:0px;
@@ -79,7 +91,7 @@ body
 form
 {
 	padding:20px 40px;
-	border-bottom: thin solid black;
+	/*border-bottom: thin solid black;*/
 }
 nav
 {
@@ -110,4 +122,43 @@ nav a
 	display: inline-block;
 	
 }
+input[type=file]{
+	color: #fff;
+  background: grey;
+  box-shadow: none;
+  outline:0;
+  
+  display: inline-block;
+  
+}
+input[type=file]::-webkit-file-upload-button
+{
 
+ 	 -webkit-appearance:none !important;
+  font-family: 'futura';
+  color: #000;
+  text-decoration: none;
+  box-shadow: none;
+  cursor: pointer;
+  vertical-align: middle;
+      background-color: #dddd00 !important;
+      border:none !important;
+      text-transform: uppercase;
+      padding: 8px;
+      outline:0;
+}
+
+input[type=submit]
+{
+	text-decoration: none;
+  box-shadow: none;
+  cursor: pointer;
+  border: none;
+  background-color: #dddd00;
+  padding: 8px;
+  outline:0;
+   vertical-align: middle;
+   color: #000;
+   font-family: 'futura';
+   text-transform: uppercase;
+}
