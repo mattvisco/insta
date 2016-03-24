@@ -18,25 +18,33 @@ var INSTAAPI = {
     },
 
     radioClick: function() {
-        /* changed the selectors since I added some div's in between */
         var id = $(this).parent().parent().attr('id');
-        //var id = $(this).parent().parent().attr('id');
         var value = $(this).val();
-        if (value == 'delete') INSTAAPI.delete(id);
-        else INSTAAPI.storeImage(id, value, $(this).parent().parent().find('img').attr('src'));
-        //else INSTAAPI.storeImage(id, value, $(this).siblings('.insta-image').prop('src'));
-        
+        var imgMask = $(this).parents('.insta-holders').find('.insta-img-mask')
+        if (value == 'delete') INSTAAPI.delete(imgMask, id);
+        else {
+            var imgSrc = $(this).parent().parent().find('img').attr('src');
+            INSTAAPI.storeImage(imgMask, id, value, imgSrc);
+        }
     },
 
-    delete: function(id) {
+    delete: function(el, id) {
         var request = {
             url: '/delete/' + id,
-            type: 'DELETE'
-        }
+            type: 'DELETE',
+            success: function(response){
+                INSTAAPI.addStateIcon(el,'success');
+                console.log(response);
+            },
+            error: function(response) {
+                INSTAAPI.addStateIcon(el,'fail');
+                console.log(response);
+            }
+        };
         $.ajax(request);
     },
 
-    storeImage: function(id, value, imageSrc) {
+    storeImage: function(el, id, value, imageSrc) {
         var url = '/store/' + value + '/' + id;
         var sendImage = function(blob) {
             var form = new FormData();
@@ -52,15 +60,26 @@ var INSTAAPI = {
                 processData: false,
                 contentType: false,
                 success: function(response){
+                    INSTAAPI.addStateIcon(el,'success');
                     console.log(response);
                 },
                 error: function(response) {
-                    console.log(response);
+                    INSTAAPI.addStateIcon(el,'fail');
+		            console.log(response);
                 }
             };
-            $.ajax(request);
+            INSTAAPI.addStateIcon(el,'loading');
+	    $.ajax(request);
         };
         INSTAAPI.makeBlob(imageSrc, sendImage);
+    },
+
+    addStateIcon: function(el, type) {
+        el.find('.fa').remove();
+        if(type == 'loading') html = "<i class='fa fa-spinner fa-spin'></i>";
+        else if(type == 'success') html = "<i class='fa fa-check'></i>";
+        else if(type == 'fail') html = "<i class='fa fa-times'></i>";
+        el.append(html);
     },
 
     checkIds: function(holder) {

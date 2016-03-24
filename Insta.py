@@ -19,7 +19,7 @@ import string
 
 # configuration
 DATABASE = '/tmp/insta.db'
-DEBUG = True
+DEBUG = False
 SECRET_KEY = 'LKDNF(ln3r(sj3r9JIWJ(j(JP#!N(J@91-93jn'
 USERNAME = 'admin'
 PASSWORD = 'default'
@@ -35,10 +35,9 @@ EDITED_SUPER_FOLDER = os.path.join(APP_ROOT, 'static/edited_super/')
 app.config['like'] = LIKES_FOLDER
 app.config['super'] = SUPER_FOLDER
 app.config['edited_super'] = EDITED_SUPER_FOLDER
-SCREEN_TOTAL = 7
+SCREEN_TOTAL = 2
 
 jsglue = JSGlue(app)
-
 socketio = SocketIO(app)
 
 
@@ -193,10 +192,6 @@ def next(id):
     the_list, min_id, max_id = get_instas('max_id', id)
     return render_template('index.html', src=the_list, prev=min_id, next=max_id)
 
-@app.route('/prev/<id>')
-def prev(id):
-    the_list,min_id, max_id = get_instas('min_id', id)
-    return render_template('index.html', src=the_list, prev=min_id, next=max_id)
 
 def add_file(file, img_type):
     # TODO: add error handling if file not there
@@ -219,7 +214,7 @@ def store(img_type, insta_id=None):
     return json.dumps({'status': 'OK'})
 
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/upload/', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
         file = request.files['file']
@@ -331,9 +326,8 @@ def joined(data):
     room = int(data['room'])
     join_room(room)
 
-# TODO: make uploading unique i.e. no duplicates
+init_db()
 
 if __name__ == '__main__':
-    init_db()
-    socketio.run(app)
+    socketio.run(app, port=15408) # Remove port number to run locally
 

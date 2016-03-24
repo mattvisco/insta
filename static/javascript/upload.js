@@ -5,6 +5,9 @@
 var socket;
 $(function() {
     socket = io.connect('http://' + document.domain + ':' + location.port + '/slides');
+    socket.on('connect', function() {
+        console.log('joined')
+    });
 
     $('#super-upload').ajaxForm(function(data) {
         if(data.error) alert(data.error);

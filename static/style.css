@@ -1,3 +1,9 @@
+.fa {
+    font-size: 50px !important;
+    color: black;
+    display: block;
+    position: absolute;
+}
 
 .slideshow-image {
 	position: fixed;

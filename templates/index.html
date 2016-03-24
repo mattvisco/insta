@@ -7,13 +7,17 @@
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/vendor/canvas-to-blob.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/store-images.js') }}"></script>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
-    <nav>
-        <a href='/'>Home</a>
-        <a id="prev" href='/prev/{{ prev }}'>Prev</a>
-        <a id="next" href='/next/{{ next }}'>Next</a>
-    </nav>
+    <header>
+        <nav>
+            <a href='/'>Home</a>
+            <a id="next" href='/next/{{ next }}'>Next</a>
+            <a href='/upload/'>Upload</a>
+            <a href='/download/'>Download</a>
+        </nav>
+    </header>
     <div class="contain-holders">
         {% for H in src %}
         <div class="insta-holders" id="{{H[1]}}">
