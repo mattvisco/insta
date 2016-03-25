@@ -19,7 +19,7 @@ import string
 
 # configuration
 DATABASE = '/tmp/insta.db'
-DEBUG = False
+DEBUG = True
 SECRET_KEY = 'LKDNF(ln3r(sj3r9JIWJ(j(JP#!N(J@91-93jn'
 USERNAME = 'admin'
 PASSWORD = 'default'
@@ -39,9 +39,6 @@ SCREEN_TOTAL = 2
 
 jsglue = JSGlue(app)
 socketio = SocketIO(app)
-
-
-
 
 def get_instas(query = '', id = ''):
 
@@ -82,7 +79,7 @@ def get_instas(query = '', id = ''):
         url = 'https://www.instagram.com/explore/tags/bestview/'
     else:
         url = 'https://www.instagram.com/explore/tags/bestview/?' + query + '=' + id
-    c.setopt(pycurl.URL, url)
+    c.setopt(pycurl.URL, str(url))
     c.setopt(pycurl.REFERER, 'https://instagram.com/')
     c.setopt(pycurl.HTTPHEADER, [
             'Accept-Language: en-US,en;q=0.8',

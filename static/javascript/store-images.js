@@ -41,6 +41,7 @@ var INSTAAPI = {
                 console.log(response);
             }
         };
+	INSTAAPI.addStateIcon(el,'loading');
         $.ajax(request);
     },
 
