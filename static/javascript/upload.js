@@ -12,7 +12,7 @@ $(function() {
     });
 
     $('input[type=submit]').click(function(){
-        if($('file-to-send').files.length == 0 || loading) {
+	if($('#file-to-send').get(0).files.length == 0 || loading) {
             return false;
         } else {
             $('#check').hide();
