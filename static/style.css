@@ -168,3 +168,13 @@ input[type=submit]
    font-family: 'futura';
    text-transform: uppercase;
 }
+
+input[type=submit]:hover
+{
+  background-color: grey;
+}
+
+input[type=submit]:active
+{
+  background-color: #696969;
+} 
