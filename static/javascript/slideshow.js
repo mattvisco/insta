@@ -52,13 +52,14 @@ var SLIDESHOW = {
 
     newSlide: function(data) {
         console.log('new slide!');
-        clearTimeout(SLIDESHOW.slideTimeout);
         var image = new Image();
-        $(image).addClass('slideshow-image');
         image.src = Flask.url_for("static", {"filename": data.img_type + '/' + data.filename});
-        SLIDESHOW.slides[SLIDESHOW.prevIndex].insertAdjacentElement("afterEnd", image);
-        SLIDESHOW.slides = $('.slideshow-image');
-        SLIDESHOW.showSlide();
+        $(image).addClass('slideshow-image');
+        $(image).load( function() {
+            //SLIDESHOW.showSlide();
+            SLIDESHOW.slides[SLIDESHOW.prevIndex].insertAdjacentElement("afterEnd", image);
+            SLIDESHOW.slides = $('.slideshow-image');
+        });
     },
     /* center image */
     centerSlide: function(diff) {
