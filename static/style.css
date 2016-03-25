@@ -1,8 +1,17 @@
 .fa {
-    font-size: 50px !important;
     color: black;
-    display: block;
     position: absolute;
+}
+
+.fa.store {
+    font-size: 50px;
+    display: block;
+}
+
+.fa.upload {
+    margin-left: 6px;
+    font-size: 30px;
+    display: none;
 }
 
 .slideshow-image {
@@ -157,16 +166,16 @@ input[type=file]::-webkit-file-upload-button
 input[type=submit]
 {
 	text-decoration: none;
-  box-shadow: none;
-  cursor: pointer;
-  border: none;
-  background-color: #dddd00;
-  padding: 8px;
-  outline:0;
-   vertical-align: middle;
-   color: #000;
-   font-family: 'futura';
-   text-transform: uppercase;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    background-color: #dddd00;
+    padding: 8px;
+    outline:0;
+    vertical-align: middle;
+    color: #000;
+    font-family: 'futura';
+    text-transform: uppercase;
 }
 
 input[type=submit]:hover
