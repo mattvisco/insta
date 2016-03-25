@@ -12,6 +12,14 @@
     margin-left: 6px;
     font-size: 30px;
     display: none;
+    margin: 20px 8px;
+}
+
+#file-selector {
+    display: inline-block;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    margin: 20px 0;
 }
 
 .slideshow-image {

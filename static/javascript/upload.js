@@ -17,7 +17,7 @@ $(function() {
         } else {
             $('#check').hide();
             $('#fail').hide();
-            $('#spin').show();
+            $('#spin').css({display: 'inline-block'});
             loading = true;
             $(this).css({backgroundColor: 'grey', cursor: 'not-allowed'});
         }
@@ -29,12 +29,12 @@ $(function() {
         if(data.error) {
             $('#spin').hide();
             $('#check').hide();
-            $('#fail').show();
+            $('#fail').css({display: 'inline-block'});
             alert(data.error);
         } else {
             $('#spin').hide();
             $('#fail').hide();
-            $('#check').show();
+            $('#check').css({display: 'inline-block'});
             socket.emit('upload complete', data);
         }
     });
