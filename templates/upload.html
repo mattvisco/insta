@@ -8,11 +8,15 @@
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/vendor/jquery.form.min.js') }}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='javascript/upload.js') }}"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
     <form id='super-upload' method="post" enctype=multipart/form-data>
       <p><input type=file name=file id="file-to-send">
          <input type=submit value=Upload>
+        <i id="spin" class='upload fa fa-spinner fa-spin'></i>
+        <i id="check" class='upload fa fa-check'></i>
+        <i id="fail" class='upload fa fa-times'></i>
     </form>
 </body>
 </html>

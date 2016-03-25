@@ -77,9 +77,9 @@ var INSTAAPI = {
 
     addStateIcon: function(el, type) {
         el.find('.fa').remove();
-        if(type == 'loading') html = "<i class='fa fa-spinner fa-spin'></i>";
-        else if(type == 'success') html = "<i class='fa fa-check'></i>";
-        else if(type == 'fail') html = "<i class='fa fa-times'></i>";
+        if(type == 'loading') html = "<i class='store fa fa-spinner fa-spin'></i>";
+        else if(type == 'success') html = "<i class='store fa fa-check'></i>";
+        else if(type == 'fail') html = "<i class='store fa fa-times'></i>";
         el.append(html);
     },
 
