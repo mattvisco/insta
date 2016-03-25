@@ -89,14 +89,14 @@ var INSTAAPI = {
         var url = '/check_id/' + id;
         var success = function(response) {
             var val = response.idValue;
-            holder.find("input[value='"+val+"']").get(0).checked = 'checked';
+	    holder.find("input[value='"+val+"']").get(0).checked = 'checked';
         };
         var request = {
             url: url,
             type: 'GET',
             success: success,
             error: function(response) {
-                console.log(response);
+		  console.log(response);
             }
         };
         $.ajax(request);
@@ -107,7 +107,7 @@ $(function() {
     var i = 0;
     $('.insta-holders').each(function(){
         INSTAAPI.checkIds(this);
-
+	console.log(this);
         /* increment the inputs name attribute for each holder */
         $(this).find('input').each(function(){
             var new_name = 'store_image_'+i;
