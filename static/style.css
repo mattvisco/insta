@@ -4,8 +4,9 @@
 }
 
 .fa.store {
-    font-size: 50px;
+    font-size: 25px;
     display: block;
+    color: #ffffff;
 }
 
 .fa.upload {
@@ -68,9 +69,17 @@
 	width: 230px;
 	position: absolute;
 }
+
+.state-holder {
+    position: relative;
+    background-color: #000000;
+    margin-top: -33px;
+    margin-left: 10px;
+}
+
 .butts
 {
-	text-align: center;
+	text-align: right;
 	padding: 8px;
 	margin: 262px auto 0px;
 	font-size: 11px;

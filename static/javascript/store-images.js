@@ -20,7 +20,7 @@ var INSTAAPI = {
     radioClick: function(event) {
         var id = $(this).parent().parent().attr('id');
         var value = $(this).val();
-        var imgMask = $(this).parents('.insta-holders').find('.insta-img-mask')
+        var imgMask = $(this).parents('.insta-holders');
         if (imgMask.get(0).loading) {
             event.preventDefault();
             return false;
@@ -89,7 +89,7 @@ var INSTAAPI = {
             if(type == 'success') html = "<i class='store fa fa-check'></i>";
             else if(type == 'fail') html = "<i class='store fa fa-times'></i>";
         }
-        el.append(html);
+        el.find('.state-holder').append(html);
     },
 
     checkIds: function(holder) {
