@@ -8,7 +8,7 @@ var loading = false;
 $(function() {
     socket = io.connect('http://' + document.domain + ':' + location.port + '/slides');
     socket.on('connect', function() {
-        socket.emit('upload complete', data);
+    //    socket.emit('upload complete', data);
         console.log('joined')
     });
 
