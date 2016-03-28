@@ -6,6 +6,7 @@ from flask_socketio import SocketIO, emit, join_room
 from contextlib import closing
 from werkzeug import secure_filename
 from flask import Flask
+from flask.ext.basicauth import BasicAuth
 from flask_jsglue import JSGlue
 import zipfile
 from io import BytesIO
@@ -27,6 +28,10 @@ PASSWORD = 'default'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('INSTA_SETTINGS', silent=True)
+app.config['BASIC_AUTH_USERNAME'] = 'emojimilan'
+app.config['BASIC_AUTH_PASSWORD'] = 'circlecracker'
+
+basic_auth = BasicAuth(app)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 LIKES_FOLDER = os.path.join(APP_ROOT, 'static/like/')
@@ -180,11 +185,13 @@ def insert(table, fields=(), values=()):
 
 
 @app.route('/')
+@basic_auth.required
 def root():
     the_list, min_id, max_id = get_instas()
     return render_template('index.html', src=the_list, prev=min_id, next=max_id)
 
 @app.route('/next/<id>')
+@basic_auth.required
 def next(id):
     the_list, min_id, max_id = get_instas('max_id', id)
     return render_template('index.html', src=the_list, prev=min_id, next=max_id)
@@ -199,6 +206,7 @@ def add_file(file, img_type):
 
 
 @app.route('/store/<img_type>/<insta_id>', methods=['POST'])
+@basic_auth.required
 def store(img_type, insta_id=None):
     file = request.files['file']
     filename = file.filename
@@ -212,6 +220,7 @@ def store(img_type, insta_id=None):
 
 
 @app.route('/upload/', methods=['GET', 'POST'])
+@basic_auth.required
 def upload():
     if request.method == 'POST':
         file = request.files['file']
@@ -231,6 +240,7 @@ def upload():
 
 
 @app.route('/download/')
+@basic_auth.required
 def download():
     files = [open(os.path.join(app.config['super'], f)) for f in os.listdir(app.config['super']) if os.path.isfile(os.path.join(app.config['super'], f))]
     if(len(files)):
@@ -266,6 +276,7 @@ def remove_file(path):
 
 
 @app.route('/delete/<insta_id>', methods=['DELETE'])
+@basic_auth.required
 def delete(insta_id):
     path = get_filename_from_id(insta_id)
     exists = remove_file(path)
@@ -331,5 +342,4 @@ def receieved(data):
 init_db()
 
 if __name__ == '__main__':
-    socketio.run(app, port=15408) # Remove port number to run locally
-
+    socketio.run(app, port=15408)  # Remove port number to run locally
