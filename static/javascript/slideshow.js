@@ -52,15 +52,30 @@ var SLIDESHOW = {
 
     newSlide: function(data) {
         console.log('new slide!');
-        var image = new Image();
-        image.src = Flask.url_for("static", {"filename": data.img_type + '/' + data.filename});
-        $(image).addClass('slideshow-image');
-        $(image).load( function() {
-            //SLIDESHOW.showSlide();
-            SLIDESHOW.slides[SLIDESHOW.prevIndex].insertAdjacentElement("afterEnd", image);
-            SLIDESHOW.slides = $('.slideshow-image');
+        var repackaged_data = {
+            room: SLIDESHOW.getRoom(),
+            image: data
+        };
+        SLIDESHOW.socket.emit('received', repackaged_data);
+        var data_src = Flask.url_for("static", {"filename": data.img_type + '/' + data.filename});
+
+        // Check if the image has already been inserted into slideshow
+        var img_exists = false;
+        SLIDESHOW.slides.each(function() {
+            if( this.src.includes(data_src) ) img_exists = true;
         });
+
+        if (!img_exists) {
+            var image = new Image();
+            image.src = data_src;
+            $(image).addClass('slideshow-image');
+            $(image).load( function() {
+                SLIDESHOW.slides[SLIDESHOW.prevIndex].insertAdjacentElement("afterEnd", image);
+                SLIDESHOW.slides = $('.slideshow-image');
+            });
+        }
     },
+
     /* center image */
     centerSlide: function(diff) {
         var d = Math.abs(SLIDESHOW.height - $(window).height())/2;       

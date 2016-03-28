@@ -230,13 +230,6 @@ def upload():
         return render_template('upload.html')
 
 
-@socketio.on('upload complete', namespace='/slides')
-def upload_complete(data):
-    """Sent by clients when they enter a room.
-    A status message is broadcast to all people in the room."""
-    emit('new-slide', data['image'], room=int(data['room']))
-
-
 @app.route('/download/')
 def download():
     files = [open(os.path.join(app.config['super'], f)) for f in os.listdir(app.config['super']) if os.path.isfile(os.path.join(app.config['super'], f))]
@@ -322,6 +315,18 @@ def slideshow(index):
 def joined(data):
     room = int(data['room'])
     join_room(room)
+
+@socketio.on('send-image', namespace='/slides')
+def send_image(data):
+    """Sent by clients when they enter a room.
+    A status message is broadcast to all people in the room."""
+    emit('new-slide', data['image'], room=int(data['room']))
+
+@socketio.on('received', namespace='/slides')
+def receieved(data):
+    """Sent by clients when they enter a room.
+    A status message is broadcast to all people in the room."""
+    emit('image-received', data, broadcast=True)
 
 init_db()
 
