@@ -35,7 +35,7 @@ EDITED_SUPER_FOLDER = os.path.join(APP_ROOT, 'static/edited_super/')
 app.config['like'] = LIKES_FOLDER
 app.config['super'] = SUPER_FOLDER
 app.config['edited_super'] = EDITED_SUPER_FOLDER
-SCREEN_TOTAL = 2
+SCREEN_TOTAL = 8
 
 jsglue = JSGlue(app)
 socketio = SocketIO(app)
