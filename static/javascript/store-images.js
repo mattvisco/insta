@@ -17,14 +17,19 @@ var INSTAAPI = {
         }
     },
 
-    radioClick: function() {
+    radioClick: function(event) {
         var id = $(this).parent().parent().attr('id');
         var value = $(this).val();
         var imgMask = $(this).parents('.insta-holders').find('.insta-img-mask')
-        if (value == 'delete') INSTAAPI.delete(imgMask, id);
-        else {
-            var imgSrc = $(this).parent().parent().find('img').attr('src');
-            INSTAAPI.storeImage(imgMask, id, value, imgSrc);
+        if (imgMask.get(0).loading) {
+            event.preventDefault();
+            return false;
+        } else {
+            if (value == 'delete') INSTAAPI.delete(imgMask, id);
+            else {
+                var imgSrc = $(this).parent().parent().find('img').attr('src');
+                INSTAAPI.storeImage(imgMask, id, value, imgSrc);
+            }
         }
     },
 
@@ -41,7 +46,7 @@ var INSTAAPI = {
                 console.log(response);
             }
         };
-	INSTAAPI.addStateIcon(el,'loading');
+	    INSTAAPI.addStateIcon(el,'loading');
         $.ajax(request);
     },
 
@@ -52,7 +57,6 @@ var INSTAAPI = {
 
             /* Changed the extension to jpg like the original file don't know if it is of any use */
             form.append('file', blob, id+'.jpg');
-            //form.append('file', blob, id+'.png');
             var request = {
                 url: url,
                 data: form,
@@ -60,7 +64,7 @@ var INSTAAPI = {
                 cache: false,
                 processData: false,
                 contentType: false,
-                success: function(response){
+                success: function(response) {
                     INSTAAPI.addStateIcon(el,'success');
                     console.log(response);
                 },
@@ -70,16 +74,21 @@ var INSTAAPI = {
                 }
             };
             INSTAAPI.addStateIcon(el,'loading');
-	    $.ajax(request);
+	        $.ajax(request);
         };
         INSTAAPI.makeBlob(imageSrc, sendImage);
     },
 
     addStateIcon: function(el, type) {
         el.find('.fa').remove();
-        if(type == 'loading') html = "<i class='store fa fa-spinner fa-spin'></i>";
-        else if(type == 'success') html = "<i class='store fa fa-check'></i>";
-        else if(type == 'fail') html = "<i class='store fa fa-times'></i>";
+        if(type == 'loading') {
+            el.get(0).loading = true;
+            html = "<i class='store fa fa-spinner fa-spin'></i>";
+        } else {
+            el.get(0).loading = false;
+            if(type == 'success') html = "<i class='store fa fa-check'></i>";
+            else if(type == 'fail') html = "<i class='store fa fa-times'></i>";
+        }
         el.append(html);
     },
 
@@ -96,7 +105,7 @@ var INSTAAPI = {
             type: 'GET',
             success: success,
             error: function(response) {
-		  console.log(response);
+		        console.log(response);
             }
         };
         $.ajax(request);
@@ -107,7 +116,6 @@ $(function() {
     var i = 0;
     $('.insta-holders').each(function(){
         INSTAAPI.checkIds(this);
-	console.log(this);
         /* increment the inputs name attribute for each holder */
         $(this).find('input').each(function(){
             var new_name = 'store_image_'+i;

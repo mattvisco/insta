@@ -326,5 +326,5 @@ def joined(data):
 init_db()
 
 if __name__ == '__main__':
-    socketio.run(app, port=15408) # Remove port number to run locally
+    socketio.run(app)#, port=15408) # Remove port number to run locally
 
