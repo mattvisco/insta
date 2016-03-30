@@ -3,6 +3,29 @@
  */
 
 var INSTAAPI = {
+    socket: null,
+    images: [],
+
+    removeElFromArr: function(array, el) {
+        var index = array.indexOf(el);
+        if (index > -1) array.splice(index, 1);
+    },
+
+    init: function() {
+        this.socket = io.connect('http://' + document.domain + ':' + location.port + '/slides');
+        this.socket.on('connect', function() {
+            console.log('joined');
+            INSTAAPI.images.forEach(function (image) {
+               INSTAAPI.socket.emit('send-image', image);
+            });
+        });
+        this.socket.on('image-received', function(data) {
+            INSTAAPI.images.forEach(function (image_data) {
+               if (image_data.image.filename == data.image.filename) INSTAAPI.removeElFromArr(INSTAAPI.images, image_data);
+            });
+        });
+    },
+
     makeBlob: function(imgSrc, callback) {
         var img = new Image();
         img.setAttribute('crossOrigin', 'anonymous');
@@ -67,6 +90,10 @@ var INSTAAPI = {
                 success: function(response) {
                     INSTAAPI.addStateIcon(el,'success');
                     console.log(response);
+                    INSTAAPI.images.push(response.data);
+                    if(response.socket) {
+                        INSTAAPI.socket.emit('send-image', response.data);
+                    }
                 },
                 error: function(response) {
                     INSTAAPI.addStateIcon(el,'fail');
@@ -113,6 +140,7 @@ var INSTAAPI = {
 };
 
 $(function() {
+    INSTAAPI.init();
     var i = 0;
     $('.insta-holders').each(function(){
         INSTAAPI.checkIds(this);

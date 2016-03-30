@@ -8,10 +8,7 @@ var images = [];
 
 function removeElFromArr(array, el) {
     var index = array.indexOf(el);
-    if (index > -1) {
-        array.splice(index, 1);
-    }
-    //return array;
+    if (index > -1) array.splice(index, 1);
 }
 
 

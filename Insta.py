@@ -40,7 +40,7 @@ EDITED_SUPER_FOLDER = os.path.join(APP_ROOT, 'static/edited_super/')
 app.config['like'] = LIKES_FOLDER
 app.config['super'] = SUPER_FOLDER
 app.config['edited_super'] = EDITED_SUPER_FOLDER
-SCREEN_TOTAL = 13
+SCREEN_TOTAL = 2
 
 jsglue = JSGlue(app)
 socketio = SocketIO(app)
@@ -214,9 +214,12 @@ def store(img_type, insta_id=None):
     delete(insta_id)
     add_file(file, img_type)
     if img_type == 'like':
-        insert('active', ('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id))
+        row_id = insert('active', ('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id))
+        room = row_id % SCREEN_TOTAL
+        image = {'img_type': img_type, 'filename': filename}
+        return jsonify({'socket': True, 'data': {'image': image, 'room': room}})
     insert('ids', ('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id))
-    return json.dumps({'status': 'OK'})
+    return jsonify({'socket': False})
 
 
 @app.route('/upload/', methods=['GET', 'POST'])
@@ -243,10 +246,11 @@ def upload():
 @basic_auth.required
 def download():
     files = [open(os.path.join(app.config['super'], f)) for f in os.listdir(app.config['super']) if os.path.isfile(os.path.join(app.config['super'], f))]
-    if(len(files)):
+    if len(files):
         memory_file = BytesIO()
         with zipfile.ZipFile(memory_file, 'w') as zf:
             for individualFile in files:
+                remove_file(individualFile.name)
                 data = zipfile.ZipInfo(os.path.basename(individualFile.name))
                 data.date_time = time.localtime(time.time())[:6]
                 data.compress_type = zipfile.ZIP_DEFLATED
