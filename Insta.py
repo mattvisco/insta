@@ -213,12 +213,12 @@ def store(img_type, insta_id=None):
     # TODO: notify javascript to continue labelling as ignore if error
     delete(insta_id)
     add_file(file, img_type)
+    insert('ids', ('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id))
     if img_type == 'like':
         row_id = insert('active', ('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id))
         room = row_id % SCREEN_TOTAL
         image = {'img_type': img_type, 'filename': filename}
         return jsonify({'socket': True, 'data': {'image': image, 'room': room}})
-    insert('ids', ('img_type', 'filename', 'insta_id'), (img_type, filename, insta_id))
     return jsonify({'socket': False})
 
 
